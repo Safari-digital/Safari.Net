@@ -1,3 +1,4 @@
+using Digital.Net.Core.Environment;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,7 +25,7 @@ public abstract class IntegrationTest<T, TContext>
         Clients.Add(Factory.CreateClient());
         Configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json", true)
-            .AddJsonFile($"appsettings.{AspnetcoreEnvironment}.json", true)
+            .AddJsonFile($"appsettings.{AspNetEnv.Test}.json", true)
             .AddEnvironmentVariables()
             .Build();
     }

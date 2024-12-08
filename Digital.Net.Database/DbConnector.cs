@@ -1,5 +1,6 @@
 using Digital.Net.Core.Environment;
 using Digital.Net.Database.Options;
+using Digital.Net.Database.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,7 @@ public static class DbConnector
             if (options.LazyLoadingProxies)
                 opts.UseLazyLoadingProxies();
             if (AspNetEnv.IsTest || options.DatabaseEngine is DatabaseEngine.SqLiteInMemory)
-                opts.UseSqlite(new SqliteConnection("Filename=:memory:"));
+                opts.UseSqlite(DatabaseUtils.InMemorySqliteConnection);
             else if (options.DatabaseEngine is DatabaseEngine.PostgreSql)
                 opts.UseNpgsql(options.ConnectionString, b => b.MigrationsAssembly(options.MigrationAssembly));
             else

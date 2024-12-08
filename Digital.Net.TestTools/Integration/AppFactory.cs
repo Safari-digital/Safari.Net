@@ -1,4 +1,6 @@
 using System.Data.Common;
+using Digital.Net.Core.Environment;
+using Digital.Net.Database.Utils;
 using Digital.Net.TestTools.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -16,13 +18,13 @@ public class AppFactory<T, TContext> : WebApplicationFactory<T> where T : class 
 
     public AppFactory()
     {
-        _connection = new SqliteConnection(SqliteUtils.ConnectionString);
+        _connection = DatabaseUtils.InMemorySqliteConnection;
         _connection.Open();
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        builder.UseEnvironment(UnitTest.AspnetcoreEnvironment);
+        builder.UseEnvironment(AspNetEnv.Test);
         builder.UseConfiguration(CreateConfigurationBuilder());
         builder.ConfigureTestServices(s => { AddMemoryDatabase(s, _connection); });
     }
