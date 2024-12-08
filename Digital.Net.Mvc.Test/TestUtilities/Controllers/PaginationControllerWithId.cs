@@ -1,6 +1,6 @@
 using Digital.Net.Entities.Repositories;
 using Digital.Net.Mvc.Controllers.Pagination;
-using Digital.Net.Mvc.Test.TestUtilities.Models;
+using InternalTestUtilities.Models;
 
 namespace Digital.Net.Mvc.Test.TestUtilities.Controllers;
 

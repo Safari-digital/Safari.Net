@@ -1,7 +1,7 @@
-using Digital.Net.Mvc.Test.TestUtilities.Models;
+using InternalTestUtilities.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Digital.Net.Mvc.Test.TestUtilities;
+namespace InternalTestUtilities;
 
 public class TestContext(DbContextOptions<TestContext> options) : DbContext(options)
 {

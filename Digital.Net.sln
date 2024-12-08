@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digital.Net.Http", "Digital
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digital.Net.Http.Test", "Digital.Net.Http.Test\Digital.Net.Http.Test.csproj", "{D91DB0C2-D5E1-45C0-9DFD-805AD41BD9D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digital.Net.Database", "Digital.Net.Database\Digital.Net.Database.csproj", "{77F30ED9-9C5A-48D0-82D0-4B28C37B68AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternalTestUtilities", "InternalTestUtilities\InternalTestUtilities.csproj", "{982A3099-3C12-4234-AEA2-C630F40A441C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,5 +70,13 @@ Global
 		{D91DB0C2-D5E1-45C0-9DFD-805AD41BD9D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D91DB0C2-D5E1-45C0-9DFD-805AD41BD9D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D91DB0C2-D5E1-45C0-9DFD-805AD41BD9D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77F30ED9-9C5A-48D0-82D0-4B28C37B68AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77F30ED9-9C5A-48D0-82D0-4B28C37B68AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77F30ED9-9C5A-48D0-82D0-4B28C37B68AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77F30ED9-9C5A-48D0-82D0-4B28C37B68AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{982A3099-3C12-4234-AEA2-C630F40A441C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{982A3099-3C12-4234-AEA2-C630F40A441C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{982A3099-3C12-4234-AEA2-C630F40A441C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{982A3099-3C12-4234-AEA2-C630F40A441C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

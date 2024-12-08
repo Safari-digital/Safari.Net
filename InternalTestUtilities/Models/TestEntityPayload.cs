@@ -1,4 +1,4 @@
-namespace Digital.Net.Mvc.Test.TestUtilities.Models;
+namespace InternalTestUtilities.Models;
 
 public class TestIdEntityPayload
 {

@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <LangVersion>12</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <IsPackable>false</IsPackable>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <NoWarn>1591</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Digital.Net.Core\Digital.Net.Core.csproj" />
+        <ProjectReference Include="..\Digital.Net.Database\Digital.Net.Database.csproj" />
+        <ProjectReference Include="..\Digital.Net.Mvc\Digital.Net.Mvc.csproj" />
+        <ProjectReference Include="..\Digital.Net.TestTools\Digital.Net.TestTools.csproj"/>
+    </ItemGroup>
+</Project>

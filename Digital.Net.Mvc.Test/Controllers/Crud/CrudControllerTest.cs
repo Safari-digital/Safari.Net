@@ -1,8 +1,8 @@
 using Digital.Net.Entities.Services;
 using Digital.Net.Mvc.Controllers.Pagination;
 using Digital.Net.Mvc.Test.TestUtilities.Controllers;
-using Digital.Net.Mvc.Test.TestUtilities.Models;
 using Digital.Net.TestTools;
+using InternalTestUtilities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;

@@ -1,12 +1,12 @@
 using Digital.Net.Core.Interval;
 using Digital.Net.Entities.Repositories;
 using Digital.Net.Mvc.Controllers.Pagination;
-using Digital.Net.Mvc.Test.TestUtilities;
 using Digital.Net.Mvc.Test.TestUtilities.Controllers;
-using Digital.Net.Mvc.Test.TestUtilities.Models;
 using Digital.Net.TestTools;
 using Digital.Net.TestTools.Data;
 using Digital.Net.TestTools.Data.Factories;
+using InternalTestUtilities;
+using InternalTestUtilities.Models;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
