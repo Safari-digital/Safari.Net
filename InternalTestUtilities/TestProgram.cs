@@ -11,13 +11,7 @@ public sealed class TestProgram
     {
         var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddControllers();
-        builder.AddDbConnector<TestContext>(
-            options =>
-            {
-                options.SetDatabaseEngine(DatabaseEngine.SqLiteInMemory);
-                return options;
-            }
-        );
+        builder.AddDbConnector<TestContext>(options => options.SetDatabaseEngine(DatabaseEngine.SqLiteInMemory));
 
         var app = builder.Build();
         app.MapControllers();

@@ -4,7 +4,6 @@ public class DigitalDatabaseOptions
 {
     public string ConnectionString { get; private set; } = string.Empty;
     public string MigrationAssembly { get; private set; } = string.Empty;
-    public bool LazyLoadingProxies { get; private set; }
     public DatabaseEngine DatabaseEngine { get; private set; } = DatabaseEngine.PostgreSql;
 
     public DigitalDatabaseOptions SetConnectionString(string connectionString)
@@ -22,12 +21,6 @@ public class DigitalDatabaseOptions
     public DigitalDatabaseOptions SetDatabaseEngine(DatabaseEngine databaseEngine)
     {
         DatabaseEngine = databaseEngine;
-        return this;
-    }
-
-    public DigitalDatabaseOptions UseLazyLoadingProxies()
-    {
-        LazyLoadingProxies = true;
         return this;
     }
 }

@@ -2,7 +2,6 @@ using Digital.Net.Core.Environment;
 using Digital.Net.Database.Options;
 using Digital.Net.Database.Utils;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,21 +11,24 @@ public static class DbConnector
 {
     public static WebApplicationBuilder AddDbConnector<TContext>(
         this WebApplicationBuilder builder,
-        Func<DigitalDatabaseOptions, DigitalDatabaseOptions> buildOptions
+        Action<DigitalDatabaseOptions> buildOptions
     )
         where TContext : DbContext
     {
-        var options = buildOptions(new DigitalDatabaseOptions());
+        var options = new DigitalDatabaseOptions();
+        buildOptions(options);
+
+        builder.Services.AddEntityFrameworkProxies();
         builder.Services.AddDbContext<TContext>(opts =>
         {
-            if (options.LazyLoadingProxies)
-                opts.UseLazyLoadingProxies();
             if (AspNetEnv.IsTest || options.DatabaseEngine is DatabaseEngine.SqLiteInMemory)
                 opts.UseSqlite(DatabaseUtils.InMemorySqliteConnection);
             else if (options.DatabaseEngine is DatabaseEngine.PostgreSql)
                 opts.UseNpgsql(options.ConnectionString, b => b.MigrationsAssembly(options.MigrationAssembly));
             else
                 throw new NotImplementedException("Database engine is not supported");
+
+            opts.UseLazyLoadingProxies();
         }, ServiceLifetime.Transient);
         return builder;
     }
