@@ -2,8 +2,32 @@ namespace Digital.Net.Database.Options;
 
 public class DigitalDatabaseOptions
 {
-    public string ConnectionString { get; } = string.Empty;
-    public string MigrationAssembly { get; } = string.Empty;
-    public bool LazyLoadingProxies { get; } = true;
-    public DatabaseEngine DatabaseEngine { get; set; } = DatabaseEngine.PostgreSql;
+    public string ConnectionString { get; private set; } = string.Empty;
+    public string MigrationAssembly { get; private set; } = string.Empty;
+    public bool LazyLoadingProxies { get; private set; }
+    public DatabaseEngine DatabaseEngine { get; private set; } = DatabaseEngine.PostgreSql;
+
+    public DigitalDatabaseOptions SetConnectionString(string connectionString)
+    {
+        ConnectionString = connectionString;
+        return this;
+    }
+
+    public DigitalDatabaseOptions SetMigrationAssembly(string migrationAssembly)
+    {
+        MigrationAssembly = migrationAssembly;
+        return this;
+    }
+
+    public DigitalDatabaseOptions SetDatabaseEngine(DatabaseEngine databaseEngine)
+    {
+        DatabaseEngine = databaseEngine;
+        return this;
+    }
+
+    public DigitalDatabaseOptions UseLazyLoadingProxies()
+    {
+        LazyLoadingProxies = true;
+        return this;
+    }
 }

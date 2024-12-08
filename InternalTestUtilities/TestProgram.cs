@@ -14,7 +14,7 @@ public sealed class TestProgram
         builder.AddDbConnector<TestContext>(
             options =>
             {
-                options.DatabaseEngine = DatabaseEngine.SqLiteInMemory;
+                options.SetDatabaseEngine(DatabaseEngine.SqLiteInMemory);
                 return options;
             }
         );
