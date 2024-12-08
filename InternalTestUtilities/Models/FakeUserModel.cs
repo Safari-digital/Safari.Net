@@ -1,4 +1,4 @@
-﻿namespace Digital.Net.Entities.Test.TestUtilities.Models;
+﻿namespace InternalTestUtilities.Models;
 
 public class FakeUserModel
 {

@@ -5,7 +5,7 @@ using Digital.Net.Entities.Attributes;
 using Digital.Net.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Digital.Net.Entities.Test.TestUtilities.Models;
+namespace InternalTestUtilities.Models;
 
 [Index(nameof(Username), nameof(Email), IsUnique = true)]
 public class FakeUser : EntityWithGuid

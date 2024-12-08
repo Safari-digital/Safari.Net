@@ -2,7 +2,7 @@ using Digital.Net.Core.Random;
 using Digital.Net.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Digital.Net.Entities.Test.TestUtilities.Models;
+namespace InternalTestUtilities.Models;
 
 [Index(nameof(Name), IsUnique = true)]
 public class FakeRole : EntityWithId

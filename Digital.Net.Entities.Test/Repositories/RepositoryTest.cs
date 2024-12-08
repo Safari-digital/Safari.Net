@@ -1,9 +1,9 @@
 using Digital.Net.Entities.Repositories;
-using Digital.Net.Entities.Test.TestUtilities;
-using Digital.Net.Entities.Test.TestUtilities.Models;
 using Digital.Net.TestTools;
 using Digital.Net.TestTools.Data;
 using Digital.Net.TestTools.Data.Factories;
+using InternalTestUtilities;
+using InternalTestUtilities.Models;
 
 namespace Digital.Net.Entities.Test.Repositories;
 
