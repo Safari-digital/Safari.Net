@@ -18,14 +18,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Digital.Net.Core\Digital.Net.Core.csproj"/>
-        <ProjectReference Include="..\Digital.Net.Entities\Digital.Net.Entities.csproj"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.7"/>
+        <PackageReference Include="xunit.extensibility.core" Version="2.5.3"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.7"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4"/>
-        <PackageReference Include="xunit.extensibility.core" Version="2.5.3"/>
+        <ProjectReference Include="..\Digital.Net.Core\Digital.Net.Core.csproj"/>
+        <ProjectReference Include="..\Digital.Net.Database\Digital.Net.Database.csproj"/>
+        <ProjectReference Include="..\Digital.Net.Entities\Digital.Net.Entities.csproj"/>
     </ItemGroup>
 
 </Project>
