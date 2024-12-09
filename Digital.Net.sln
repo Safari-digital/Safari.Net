@@ -27,6 +27,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternalTestUtilities", "In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digital.Net.Database.Test", "Digital.Net.Database.Test\Digital.Net.Database.Test.csproj", "{0A7084FE-3B5D-45E8-BB1B-567FE0FCE520}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digital.Net.Authentication", "Digital.Net.Authentication\Digital.Net.Authentication.csproj", "{CA02E85F-1B69-43DE-B8DD-1CE10FEA7E8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digital.Net.Authentication.Test", "Digital.Net.Authentication.Test\Digital.Net.Authentication.Test.csproj", "{FD992FCE-AEAB-4D7A-8F04-FCA4682FE9BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,5 +88,13 @@ Global
 		{0A7084FE-3B5D-45E8-BB1B-567FE0FCE520}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A7084FE-3B5D-45E8-BB1B-567FE0FCE520}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A7084FE-3B5D-45E8-BB1B-567FE0FCE520}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA02E85F-1B69-43DE-B8DD-1CE10FEA7E8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA02E85F-1B69-43DE-B8DD-1CE10FEA7E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA02E85F-1B69-43DE-B8DD-1CE10FEA7E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA02E85F-1B69-43DE-B8DD-1CE10FEA7E8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD992FCE-AEAB-4D7A-8F04-FCA4682FE9BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD992FCE-AEAB-4D7A-8F04-FCA4682FE9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD992FCE-AEAB-4D7A-8F04-FCA4682FE9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD992FCE-AEAB-4D7A-8F04-FCA4682FE9BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

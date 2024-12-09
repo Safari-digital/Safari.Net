@@ -13,6 +13,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Digital.Net.Authentication\Digital.Net.Authentication.csproj"/>
         <ProjectReference Include="..\Digital.Net.Core\Digital.Net.Core.csproj" />
         <ProjectReference Include="..\Digital.Net.Database\Digital.Net.Database.csproj" />
         <ProjectReference Include="..\Digital.Net.Mvc\Digital.Net.Mvc.csproj" />
