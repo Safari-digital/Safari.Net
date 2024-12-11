@@ -23,13 +23,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digital.Net.Http.Test", "Di
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digital.Net.Database", "Digital.Net.Database\Digital.Net.Database.csproj", "{77F30ED9-9C5A-48D0-82D0-4B28C37B68AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternalTestUtilities", "InternalTestUtilities\InternalTestUtilities.csproj", "{982A3099-3C12-4234-AEA2-C630F40A441C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digital.Net.Database.Test", "Digital.Net.Database.Test\Digital.Net.Database.Test.csproj", "{0A7084FE-3B5D-45E8-BB1B-567FE0FCE520}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digital.Net.Authentication", "Digital.Net.Authentication\Digital.Net.Authentication.csproj", "{CA02E85F-1B69-43DE-B8DD-1CE10FEA7E8D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Digital.Net.Authentication.Test", "Digital.Net.Authentication.Test\Digital.Net.Authentication.Test.csproj", "{FD992FCE-AEAB-4D7A-8F04-FCA4682FE9BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternalTestProgram", "InternalTestProgram\InternalTestProgram.csproj", "{F67828A3-B2FC-48BD-8C0F-2813DE912E18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,10 +80,6 @@ Global
 		{77F30ED9-9C5A-48D0-82D0-4B28C37B68AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77F30ED9-9C5A-48D0-82D0-4B28C37B68AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77F30ED9-9C5A-48D0-82D0-4B28C37B68AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{982A3099-3C12-4234-AEA2-C630F40A441C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{982A3099-3C12-4234-AEA2-C630F40A441C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{982A3099-3C12-4234-AEA2-C630F40A441C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{982A3099-3C12-4234-AEA2-C630F40A441C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0A7084FE-3B5D-45E8-BB1B-567FE0FCE520}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0A7084FE-3B5D-45E8-BB1B-567FE0FCE520}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A7084FE-3B5D-45E8-BB1B-567FE0FCE520}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -96,5 +92,9 @@ Global
 		{FD992FCE-AEAB-4D7A-8F04-FCA4682FE9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD992FCE-AEAB-4D7A-8F04-FCA4682FE9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD992FCE-AEAB-4D7A-8F04-FCA4682FE9BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F67828A3-B2FC-48BD-8C0F-2813DE912E18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F67828A3-B2FC-48BD-8C0F-2813DE912E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F67828A3-B2FC-48BD-8C0F-2813DE912E18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F67828A3-B2FC-48BD-8C0F-2813DE912E18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

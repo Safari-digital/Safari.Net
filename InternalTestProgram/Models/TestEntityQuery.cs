@@ -1,6 +1,6 @@
 using Digital.Net.Mvc.Controllers.Pagination;
 
-namespace InternalTestUtilities.Models;
+namespace InternalTestProgram.Models;
 
 public class TestIdEntityQuery : Query
 {

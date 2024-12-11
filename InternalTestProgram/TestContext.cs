@@ -1,7 +1,7 @@
-using InternalTestUtilities.Models;
+using InternalTestProgram.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace InternalTestUtilities;
+namespace InternalTestProgram;
 
 public class TestContext(DbContextOptions<TestContext> options) : DbContext(options)
 {

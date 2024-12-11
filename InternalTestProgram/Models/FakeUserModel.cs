@@ -1,4 +1,4 @@
-﻿namespace InternalTestUtilities.Models;
+﻿namespace InternalTestProgram.Models;
 
 public class FakeUserModel
 {

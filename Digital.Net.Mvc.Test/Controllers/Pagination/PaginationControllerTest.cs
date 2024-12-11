@@ -5,8 +5,8 @@ using Digital.Net.Mvc.Test.TestUtilities.Controllers;
 using Digital.Net.TestTools;
 using Digital.Net.TestTools.Data;
 using Digital.Net.TestTools.Data.Factories;
-using InternalTestUtilities;
-using InternalTestUtilities.Models;
+using InternalTestProgram;
+using InternalTestProgram.Models;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
 

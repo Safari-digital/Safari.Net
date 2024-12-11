@@ -3,8 +3,8 @@ using Digital.Net.Entities.Services;
 using Digital.Net.TestTools;
 using Digital.Net.TestTools.Data;
 using Digital.Net.TestTools.Data.Factories;
-using InternalTestUtilities;
-using InternalTestUtilities.Models;
+using InternalTestProgram;
+using InternalTestProgram.Models;
 using Microsoft.AspNetCore.JsonPatch;
 
 namespace Digital.Net.Entities.Test.Services;

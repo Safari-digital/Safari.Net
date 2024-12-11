@@ -1,7 +1,10 @@
 using Digital.Net.Authentication.Models;
 using Digital.Net.Authentication.Options;
 using Digital.Net.Authentication.Services;
+using Digital.Net.Core.Application;
 using Digital.Net.Entities.Repositories;
+using Digital.Net.Mvc;
+using Digital.Net.Mvc.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Digital.Net.Authentication;
@@ -26,13 +29,29 @@ public static class Injector
     /// <returns></returns>
     public static IServiceCollection AddDigitalApiKeyAuthorization<TModel>(
         this IServiceCollection services,
-        Action<DigitalApiKeyAuthorizationOptions> buildOptions
+        Action<DigitalApiKeyAuthorizationOptions>? buildOptions = null
     )
         where TModel : ApiKeyEntity
     {
-        services.Configure(buildOptions);
-        services.AddScoped<IRepository<TModel>, Repository<TModel>>();
+        services.ConfigureBuildOptions(buildOptions);
         services.AddScoped<IApiKeyService, ApiKeyService<TModel>>();
+
+        if (!services.IsInjected(typeof(IHttpContextService)))
+            services.AddDigitalMvc();
+        if (!services.IsInjected(typeof(IRepository<TModel>)))
+            services.AddScoped<IRepository<TModel>, Repository<TModel>>();
+
         return services;
+    }
+
+    private static void ConfigureBuildOptions(
+        this IServiceCollection services,
+        Action<DigitalApiKeyAuthorizationOptions>? buildOptions = null
+    )
+    {
+        if (buildOptions is null)
+            services.Configure<DigitalApiKeyAuthorizationOptions>(_ => { });
+        else
+            services.Configure(buildOptions);
     }
 }

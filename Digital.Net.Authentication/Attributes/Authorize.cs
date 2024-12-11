@@ -1,7 +1,6 @@
 using Digital.Net.Authentication.Extensions;
 using Digital.Net.Authentication.Models;
 using Digital.Net.Authentication.Services;
-using Digital.Net.Core.Errors;
 using Digital.Net.Core.Messages;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,48 +14,49 @@ public class AuthorizeAttribute(AuthorizeType type) : Attribute, IAuthorizationF
 
     public void OnAuthorization(AuthorizationFilterContext context)
     {
-        var result = new Result();
+        var result = new AuthorizationResult();
 
         if (Type.HasFlag(AuthorizeType.ApiKey))
             result.Merge(AuthorizeApiKey(context));
-        if (Type.HasFlag(AuthorizeType.Jwt))
+        if (Type.HasFlag(AuthorizeType.Jwt) && result.IsAuthorized is false)
             result.Merge(AuthorizeJwt(context));
-        if (!result.HasError)
+        if (!result.HasError || result.IsAuthorized)
             return;
 
         OnAuthorizationFailure(context, result);
         context.SetUnauthorisedResult();
     }
 
-    private Result AuthorizeApiKey(AuthorizationFilterContext context)
+    private AuthorizationResult AuthorizeApiKey(AuthorizationFilterContext context)
     {
-        var result = new Result();
-        var service = TryCatchUtilities.TryOrNull(
-            () => context.HttpContext.RequestServices.GetRequiredService<IApiKeyService>()
-        );
-        if (service is null)
-            throw new ApplicationException("DigitalApiKeyAuthorization as not been added to the service collection.");
+        var result = new AuthorizationResult();
+        var service = context.HttpContext.RequestServices.GetRequiredService<IApiKeyService>();
 
         var apiKey = service.GetApiKey();
-        result.Try(() => OnApiKeyAuthorization(context));
+        result.Try(() => OnApiKeyAuthorization(context, apiKey));
 
         if (Type.HasFlag(AuthorizeType.Jwt) && (apiKey is null || result.HasError))
             new Result().AddInfo("JWT Authorization available. Continue with JWT Authorization.");
         else if (result.HasError)
             return result;
 
-        return service.ValidateApiKey(apiKey);
+        result.Merge(service.ValidateApiKey(apiKey));
+        if (!result.HasError)
+            result.Authorize();
+
+        return result;
     }
 
-    private Result AuthorizeJwt(AuthorizationFilterContext context) => throw new NotImplementedException();
+    private AuthorizationResult AuthorizeJwt(AuthorizationFilterContext context) => throw new NotImplementedException();
 
     /// <summary>
     ///     Executes custom logic for API Key authorization.
     /// </summary>
     /// <param name="context">The context of the authorization.</param>
+    /// <param name="apiKey">The API Key to authorize.</param>
     /// <remarks>Override this method to execute custom logic during API Key authorization.</remarks>
     /// <remarks>Throw an exception to return an unauthorized result.</remarks>
-    protected static void OnApiKeyAuthorization(AuthorizationFilterContext context)
+    protected static void OnApiKeyAuthorization(AuthorizationFilterContext context, string? apiKey)
     {
     }
 

@@ -14,7 +14,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Digital.Net.TestTools\Digital.Net.TestTools.csproj"/>
-        <ProjectReference Include="..\InternalTestUtilities\InternalTestUtilities.csproj" />
     </ItemGroup>
 
     <ItemGroup>

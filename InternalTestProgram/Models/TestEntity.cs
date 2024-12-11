@@ -4,7 +4,7 @@ using Digital.Net.Core.Random;
 using Digital.Net.Entities.Attributes;
 using Digital.Net.Entities.Models;
 
-namespace InternalTestUtilities.Models;
+namespace InternalTestProgram.Models;
 
 public class TestIdEntity : EntityWithId
 {

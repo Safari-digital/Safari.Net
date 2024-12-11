@@ -1,6 +1,6 @@
 using Digital.Net.Entities.Services;
 using Digital.Net.Mvc.Controllers.Crud;
-using InternalTestUtilities.Models;
+using InternalTestProgram.Models;
 using Microsoft.AspNetCore.Http;
 
 namespace Digital.Net.Mvc.Test.TestUtilities.Controllers;
