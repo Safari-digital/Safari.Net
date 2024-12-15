@@ -9,18 +9,18 @@ namespace Digital.Net.Entities.Test.Repositories;
 
 public class RepositoryTest : UnitTest
 {
-    private readonly DataFactory<FakeRole> _roleFactory;
-    private readonly Repository<FakeRole> _roleRepository;
-    private readonly DataFactory<FakeUser> _userFactory;
-    private readonly Repository<FakeUser> _userRepository;
+    private readonly DataFactory<TestRole> _roleFactory;
+    private readonly Repository<TestRole> _roleRepository;
+    private readonly DataFactory<TestUser> _userFactory;
+    private readonly Repository<TestUser> _userRepository;
 
     public RepositoryTest()
     {
         var context = new SqliteMemoryDb<TestContext>().Context;
-        _userRepository = new Repository<FakeUser>(context);
-        _roleRepository = new Repository<FakeRole>(context);
-        _userFactory = new DataFactory<FakeUser>(_userRepository);
-        _roleFactory = new DataFactory<FakeRole>(_roleRepository);
+        _userRepository = new Repository<TestUser>(context);
+        _roleRepository = new Repository<TestRole>(context);
+        _userFactory = new DataFactory<TestUser>(_userRepository);
+        _roleFactory = new DataFactory<TestRole>(_roleRepository);
     }
 
     [Fact]
@@ -62,7 +62,7 @@ public class RepositoryTest : UnitTest
     [Fact]
     public void Create_ShouldCreateUser()
     {
-        var user = new FakeUser { Username = "Garfield" };
+        var user = new TestUser { Username = "Garfield" };
         _userRepository.Create(user);
         _userRepository.Save();
         var created = _userRepository.Get(u => u.Username == user.Username).FirstOrDefault();

@@ -16,7 +16,7 @@ public class AttributeAnalyzerTest : UnitTest
     }
 
     [Index(nameof(UniqueProperty), IsUnique = true)]
-    private class TestEntity : EntityBase
+    private class TestEntity : EntityId
     {
         [Required]
         public string RequiredProperty { get; set; }

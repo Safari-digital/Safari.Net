@@ -1,4 +1,4 @@
-namespace Digital.Net.Authentication.Models;
+namespace Digital.Net.Authentication.Attributes;
 
 [Flags]
 public enum AuthorizeType

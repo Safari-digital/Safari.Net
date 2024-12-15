@@ -6,7 +6,7 @@ using Digital.Net.Entities.Models;
 
 namespace InternalTestProgram.Models;
 
-public class TestIdEntity : EntityWithId
+public class TestIdEntity : EntityId
 {
     [Column("Username"), Required]
     public string Username { get; set; } = Randomizer.GenerateRandomString();
@@ -18,7 +18,7 @@ public class TestIdEntity : EntityWithId
     public string Email { get; set; } = Randomizer.GenerateRandomString();
 }
 
-public class TestGuidEntity : EntityWithGuid
+public class TestGuidEntity : EntityGuid
 {
     [Column("Username"), Required]
     public string Username { get; set; } = Randomizer.GenerateRandomString();

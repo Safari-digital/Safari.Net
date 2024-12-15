@@ -1,5 +1,4 @@
 using System.Linq.Expressions;
-using Digital.Net.Core.Messages;
 using Digital.Net.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +9,7 @@ namespace Digital.Net.Entities.Repositories;
 /// </summary>
 /// <typeparam name="T">The entity type. (Must inherit from EntityBase)</typeparam>
 public class Repository<T>(DbContext context) : IRepository<T>
-    where T : EntityBase
+    where T : Entity
 {
     public void Create(T entity) => context.Set<T>().Add(entity);
 
@@ -33,6 +32,10 @@ public class Repository<T>(DbContext context) : IRepository<T>
 
     public async Task<T?> GetByIdAsync(Guid? id) => await context.Set<T>().FindAsync(id);
 
+    public int Count(Expression<Func<T, bool>> expression) => context.Set<T>().Count(expression);
+
+    public Task<int> CountAsync(Expression<Func<T, bool>> expression) => context.Set<T>().CountAsync(expression);
+
     public async Task SaveAsync()
     {
         AddTimestamps();
@@ -51,7 +54,7 @@ public class Repository<T>(DbContext context) : IRepository<T>
         var entities = context
             .ChangeTracker.Entries()
             .Where(x =>
-                x is { Entity: EntityBase, State: EntityState.Added or EntityState.Modified }
+                x is { Entity: Entity, State: EntityState.Added or EntityState.Modified }
             );
         foreach (var entity in entities)
         {

@@ -29,7 +29,7 @@ public class HttpContextService(IHttpContextAccessor contextAccessor) : IHttpCon
     public void SetResponseCookie(
         string content,
         string name,
-        long expiration,
+        DateTime expiration,
         SameSiteMode? sameSite = null,
         bool? httpOnly = null,
         bool? secure = null
@@ -40,7 +40,7 @@ public class HttpContextService(IHttpContextAccessor contextAccessor) : IHttpCon
             HttpOnly = httpOnly ?? true,
             Secure = secure ?? true,
             SameSite = sameSite ?? SameSiteMode.None,
-            Expires = DateTime.UtcNow.AddMilliseconds(expiration)
+            Expires = expiration
         };
         Response.Cookies.Append(name, content, cookieOptions);
     }

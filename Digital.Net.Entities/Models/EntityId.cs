@@ -3,11 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Digital.Net.Entities.Models;
 
-/// <summary>
-///     Base class for entities with a Guid primary key
-/// </summary>
-public abstract class EntityWithGuid : EntityBase
+public class EntityId : Entity
 {
     [Column("Id"), Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; init; }
+    public int Id { get; set; }
 }

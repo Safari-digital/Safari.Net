@@ -1,7 +1,6 @@
 using System.Data.Common;
 using Digital.Net.Core.Environment;
 using Digital.Net.Database.Utils;
-using Digital.Net.TestTools.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;

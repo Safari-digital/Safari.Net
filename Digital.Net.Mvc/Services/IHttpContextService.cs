@@ -41,7 +41,7 @@ public interface IHttpContextService
     void SetResponseCookie(
         string content,
         string name,
-        long expiration,
+        DateTime expiration,
         SameSiteMode? sameSite = null,
         bool? httpOnly = null,
         bool? secure = null

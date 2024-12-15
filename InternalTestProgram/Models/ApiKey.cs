@@ -1,5 +1,5 @@
-using Digital.Net.Authentication.Models;
+using Digital.Net.Authentication.Models.Authorizations;
 
 namespace InternalTestProgram.Models;
 
-public class ApiKey(string? key = null, DateTime? expiredAt = null) : ApiKeyWithGuidEntity(key, expiredAt);
+public class ApiKey : AuthorizationApiKey;

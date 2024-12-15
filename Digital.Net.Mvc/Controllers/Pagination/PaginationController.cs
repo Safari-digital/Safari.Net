@@ -1,6 +1,5 @@
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
-using Digital.Net.Core.Errors;
 using Digital.Net.Core.Models;
 using Digital.Net.Core.Predicates;
 using Digital.Net.Entities.Models;
@@ -14,7 +13,7 @@ namespace Digital.Net.Mvc.Controllers.Pagination;
 public abstract class PaginationController<T, TDto, TQuery>(
     IRepository<T> repository
 ) : ControllerBase
-    where T : EntityBase
+    where T : Entity
     where TDto : class
     where TQuery : Query
 {

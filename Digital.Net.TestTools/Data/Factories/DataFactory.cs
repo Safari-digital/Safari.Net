@@ -4,7 +4,7 @@ using Digital.Net.Entities.Repositories;
 namespace Digital.Net.TestTools.Data.Factories;
 
 public class DataFactory<T>(IRepository<T> repository)
-    where T : EntityBase
+    where T : Entity
 {
     private readonly List<T> _entities = [];
 

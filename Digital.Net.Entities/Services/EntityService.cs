@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Digital.Net.Entities.Services;
 
-public class EntityService<T>(IRepository<T> repository) : IEntityService<T> where T : EntityBase
+public class EntityService<T>(IRepository<T> repository) : IEntityService<T> where T : Entity
 {
     public List<SchemaProperty<T>> GetSchema() =>
         typeof(T)

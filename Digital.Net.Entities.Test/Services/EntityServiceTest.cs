@@ -11,16 +11,16 @@ namespace Digital.Net.Entities.Test.Services;
 
 public class EntityServiceTest : UnitTest
 {
-    private readonly DataFactory<FakeUser> _userFactory;
-    private readonly Repository<FakeUser> _userRepository;
-    private readonly IEntityService<FakeUser> _userService;
+    private readonly DataFactory<TestUser> _userFactory;
+    private readonly Repository<TestUser> _userRepository;
+    private readonly IEntityService<TestUser> _userService;
 
     public EntityServiceTest()
     {
         var context = new SqliteMemoryDb<TestContext>().Context;
-        _userRepository = new Repository<FakeUser>(context);
-        _userFactory = new DataFactory<FakeUser>(_userRepository);
-        _userService = new EntityService<FakeUser>(_userRepository);
+        _userRepository = new Repository<TestUser>(context);
+        _userFactory = new DataFactory<TestUser>(_userRepository);
+        _userService = new EntityService<TestUser>(_userRepository);
     }
 
     [Fact]
@@ -34,7 +34,7 @@ public class EntityServiceTest : UnitTest
     public async Task Patch_ReturnsMappedModel_WhenQueryIsValid()
     {
         var user = await _userFactory.CreateAsync();
-        var patch = new JsonPatchDocument<FakeUser>();
+        var patch = new JsonPatchDocument<TestUser>();
         patch.Replace(u => u.Username, "NewUsername");
         var result = await _userService.Patch(patch, user.Id);
         var updatedUser = await _userRepository.GetByIdAsync(user.Id);
@@ -45,7 +45,7 @@ public class EntityServiceTest : UnitTest
     [Fact]
     public async Task Patch_ReturnsError_WhenEntityNotFound()
     {
-        var patch = new JsonPatchDocument<FakeUser>();
+        var patch = new JsonPatchDocument<TestUser>();
         patch.Replace(u => u.Username, "NewUsername");
         var result = await _userService.Patch(patch, Guid.NewGuid());
         Assert.True(result.HasError);
@@ -55,7 +55,7 @@ public class EntityServiceTest : UnitTest
     public async Task Patch_ReturnsError_WhenInvalidRegex()
     {
         var user = await _userFactory.CreateAsync();
-        var patch = new JsonPatchDocument<FakeUser>();
+        var patch = new JsonPatchDocument<TestUser>();
         patch.Replace(u => u.Username, "to");
         var result = await _userService.Patch(patch, user.Id);
         var updatedUser = await _userRepository.GetByIdAsync(user.Id);
@@ -68,7 +68,7 @@ public class EntityServiceTest : UnitTest
     {
         var user = await _userFactory.CreateAsync();
         var user2 = await _userFactory.CreateAsync();
-        var patch = new JsonPatchDocument<FakeUser>();
+        var patch = new JsonPatchDocument<TestUser>();
         patch.Replace(u => u.Username, user2.Username);
         var result = await _userService.Patch(patch, user.Id);
         var updatedUser = await _userRepository.GetByIdAsync(user.Id);
@@ -80,8 +80,8 @@ public class EntityServiceTest : UnitTest
     public async Task Patch_ReturnsError_WhenPatchingReadOnlyField()
     {
         var user = await _userFactory.CreateAsync();
-        var patch = new JsonPatchDocument<FakeUser>();
-        patch.Replace(u => u.Role, new FakeRole());
+        var patch = new JsonPatchDocument<TestUser>();
+        patch.Replace(u => u.Role, new TestRole());
         var result = await _userService.Patch(patch, user.Id);
         Assert.True(result.HasError);
     }
@@ -89,7 +89,7 @@ public class EntityServiceTest : UnitTest
     [Fact]
     public async Task Create_ReturnsSuccess_WhenEntityIsValid()
     {
-        var user = new FakeUser
+        var user = new TestUser
         {
             Username = "NewUser",
             Password = "SecretPassword123!",
@@ -105,7 +105,7 @@ public class EntityServiceTest : UnitTest
     [Fact]
     public async Task Create_ReturnsError_WhenEntityIsInvalid()
     {
-        var user = new FakeUser();
+        var user = new TestUser();
         var result = await _userService.Create(user);
         Assert.True(result.HasError);
     }

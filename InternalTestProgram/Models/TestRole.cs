@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace InternalTestProgram.Models;
 
 [Index(nameof(Name), IsUnique = true)]
-public class FakeRole : EntityWithId
+public class TestRole : EntityId
 {
     public string Name { get; set; } = Randomizer.GenerateRandomString();
     public ERole Role { get; set; } = ERole.User;

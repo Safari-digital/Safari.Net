@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Digital.Net.Entities.Models;
 
 /// <summary>
-///     Base class for entities with an integer primary key
+///     Base class for entities with a Guid primary key
 /// </summary>
-public abstract class EntityWithId : EntityBase
+public abstract class EntityGuid : Entity
 {
     [Column("Id"), Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; init; }
+    public Guid Id { get; init; }
 }

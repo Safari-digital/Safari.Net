@@ -14,7 +14,9 @@ public sealed class Program
         builder.AddDbConnector<TestContext>(options => options.SetDatabaseEngine(DatabaseEngine.SqLiteInMemory));
         builder.Services.AddControllers();
         builder.Services.AddDigitalEntities<TestContext>();
-        builder.Services.AddDigitalApiKeyAuthorization<ApiKey>();
+        builder.Services.AddDigitalApiKeyAuthentication<TestUser, ApiKey>();
+        builder.Services.AddDigitalApiKeyAuthentication<FakeUser, ApiKey>();
+
 
         var app = builder.Build();
         app.MapControllers();

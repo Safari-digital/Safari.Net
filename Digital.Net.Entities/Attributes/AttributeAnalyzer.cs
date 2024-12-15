@@ -12,7 +12,7 @@ namespace Digital.Net.Entities.Attributes;
 /// </summary>
 /// <typeparam name="T"></typeparam>
 // ReSharper disable once InconsistentNaming
-public static class AttributeAnalyzer<T> where T : EntityBase
+public static class AttributeAnalyzer<T> where T : Entity
 {
     public static bool IsRequired(string propertyName) =>
         typeof(T).GetProperty(propertyName)?.GetCustomAttribute<RequiredAttribute>() is not null;

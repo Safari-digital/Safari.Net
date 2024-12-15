@@ -8,7 +8,7 @@ namespace Digital.Net.Entities.Test.Models;
 
 public class SchemaPropertyTest : UnitTest
 {
-    private class TestEntity : EntityBase
+    private class TestEntity : EntityId
     {
         [Column("required_property"), DataFlag("test_flag"), Required, ReadOnly]
         public string RequiredProperty { get; set; }

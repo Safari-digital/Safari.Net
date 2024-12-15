@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.JsonPatch;
 
 namespace Digital.Net.Entities.Services;
 
-public interface IEntityService<T> where T : EntityBase
+public interface IEntityService<T> where T : Entity
 {
     /// <summary>
     ///     Get a schema of the entity describing its properties.

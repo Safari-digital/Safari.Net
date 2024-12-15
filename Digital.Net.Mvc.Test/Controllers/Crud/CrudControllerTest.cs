@@ -3,7 +3,6 @@ using Digital.Net.Mvc.Controllers.Pagination;
 using Digital.Net.Mvc.Test.TestUtilities.Controllers;
 using Digital.Net.TestTools;
 using InternalTestProgram.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
@@ -12,7 +11,6 @@ namespace Digital.Net.Mvc.Test.Controllers.Crud;
 
 public class CrudControllerTest : UnitTest
 {
-    private readonly Mock<IHttpContextAccessor> _contextAccessorMock = new();
     private readonly Mock<IEntityService<TestIdEntity>> _idEntityServiceMock = new();
     private readonly Mock<IEntityService<TestGuidEntity>> _guidEntityServiceMock = new();
 
@@ -21,9 +19,6 @@ public class CrudControllerTest : UnitTest
 
     public CrudControllerTest()
     {
-        _contextAccessorMock
-            .Setup(x => x.HttpContext)
-            .Returns(new DefaultHttpContext());
         _idEntityServiceMock
             .Setup(x => x.Get<TestIdEntityDto>(It.IsAny<int>()))
             .Returns(new QueryResult<TestIdEntityDto>());
@@ -31,8 +26,8 @@ public class CrudControllerTest : UnitTest
             .Setup(x => x.Get<TestGuidEntityDto>(It.IsAny<Guid>()))
             .Returns(new QueryResult<TestGuidEntityDto>());
 
-        _crudIdController = new CrudControllerWithId(_contextAccessorMock.Object, _idEntityServiceMock.Object);
-        _crudGuidController = new CrudControllerWithGuid(_contextAccessorMock.Object, _guidEntityServiceMock.Object);
+        _crudIdController = new CrudControllerWithId(_idEntityServiceMock.Object);
+        _crudGuidController = new CrudControllerWithGuid(_guidEntityServiceMock.Object);
     }
 
     [Fact]

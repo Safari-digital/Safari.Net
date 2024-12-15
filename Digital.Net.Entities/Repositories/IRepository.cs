@@ -8,7 +8,7 @@ namespace Digital.Net.Entities.Repositories;
 /// </summary>
 /// <typeparam name="T">The entity type. (Must inherit from EntityBase)</typeparam>
 public interface IRepository<T>
-    where T : EntityBase
+    where T : Entity
 {
     /// <summary>
     ///     Create a new entity
@@ -84,4 +84,18 @@ public interface IRepository<T>
     /// <param name="id">The primary key of the entity.</param>
     /// <returns>The entity</returns>
     Task<T?> GetByIdAsync(Guid? id);
+
+    /// <summary>
+    ///     Get the count of entities based on a predicate.
+    /// </summary>
+    /// <param name="expression">The predicate to filter entities</param>
+    /// <returns>The count of entities</returns>
+    int Count(Expression<Func<T, bool>> expression);
+
+    /// <summary>
+    ///     Get the count of entities based on a predicate asynchronously.
+    /// </summary>
+    /// <param name="expression">The predicate to filter entities</param>
+    /// <returns>The count of entities</returns>
+    Task<int> CountAsync(Expression<Func<T, bool>> expression);
 }
