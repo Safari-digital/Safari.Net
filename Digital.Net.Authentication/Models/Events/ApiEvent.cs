@@ -6,8 +6,17 @@ using Digital.Net.Entities.Models;
 
 namespace Digital.Net.Authentication.Models.Events;
 
-public abstract class ApiEvent(string userAgent, string ipAddress) : EntityId, IApiEvent
+public abstract class ApiEvent : EntityId, IApiEvent
 {
+    public ApiEvent()
+    {
+    }
+
+    public ApiEvent(string userAgent, string ipAddress)
+    {
+        UserAgent = userAgent;
+        IpAddress = ipAddress;
+    }
     public IApiEvent SetApiUser(Guid apiUserId, Type apiUserType)
     {
         ApiUserId = apiUserId;
@@ -15,9 +24,9 @@ public abstract class ApiEvent(string userAgent, string ipAddress) : EntityId, I
         return this;
     }
 
-    public IApiEvent SetResult(Result result)
+    public IApiEvent SetResult(Result? result)
     {
-        if (result.HasError)
+        if (result is not null && result.HasError)
         {
             var trace = JsonSerializer.Serialize(result.Errors);
             ErrorTrace = trace.Length > 4096 ? trace[..4096] : trace;
@@ -28,10 +37,10 @@ public abstract class ApiEvent(string userAgent, string ipAddress) : EntityId, I
     }
 
     [Column("UserAgent"), Required, MaxLength(1024)]
-    public string UserAgent { get; } = userAgent;
+    public string UserAgent { get; set; } = string.Empty;
 
     [Column("IpAddress"), Required, MaxLength(45)]
-    public string IpAddress { get; } = ipAddress;
+    public string IpAddress { get; set; } = string.Empty;
 
     [Column("ApiUserId")]
     public Guid? ApiUserId { get; private set; }

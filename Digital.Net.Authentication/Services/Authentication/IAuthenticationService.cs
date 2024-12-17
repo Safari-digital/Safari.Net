@@ -7,9 +7,9 @@ namespace Digital.Net.Authentication.Services.Authentication;
 public interface IAuthenticationService<TApiUser>
     where TApiUser : EntityGuid, IApiUser
 {
-    public string GeneratePasswordHash(string password);
-    public Task<Result<string>> Login(string login, string password);
     public Result<string> RefreshTokens();
+    public Task<Result<TApiUser>> ValidateCredentials(string login, string password);
+    public Task<Result<string>> Login(string login, string password);
     public Task Logout();
     public Task LogoutAll();
 }

@@ -9,4 +9,6 @@ namespace InternalTestProgram.Models;
 public class FakeUser : EntityGuid, IApiUser
 {
     public string Password { get; set; } = Randomizer.GenerateRandomString();
+    public string Login { get; } = Randomizer.GenerateRandomString();
+    public bool IsActive { get; } = true;
 }

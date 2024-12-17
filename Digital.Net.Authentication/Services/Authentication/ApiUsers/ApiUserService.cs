@@ -14,7 +14,7 @@ public class ApiUserService<TApiUser>(
     where TApiUser : EntityGuid, IApiUser
 {
     public Guid? GetAuthenticatedUserId() =>
-        httpContextService.GetItem<AuthorizationResult>(Defaults.ApiContextAuthorizationKey)?.ApiUserId;
+        httpContextService.GetItem<AuthorizationResult>(AuthenticationDefaults.ApiContextAuthorizationKey)?.ApiUserId;
 
     public TApiUser? GetAuthenticatedUser() => repository.GetById(GetAuthenticatedUserId());
 

@@ -17,9 +17,9 @@ public class AuthenticationEventService<TApiUser, TEvent>(
 {
     public async Task RegisterEventAsync(
         AuthenticationEventType eventType,
-        Result result,
+        Result? result,
         Guid? userId,
-        string? payload
+        string? payload = null
     )
     {
         var authEvent = AuthenticationEvent.Create<TEvent>(

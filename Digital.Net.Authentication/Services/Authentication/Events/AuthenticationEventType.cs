@@ -4,6 +4,7 @@ namespace Digital.Net.Authentication.Services.Authentication.Events;
 
 public enum AuthenticationEventType
 {
+    Unknown,
     [Display(Name = "login - Success")]
     LoginSuccess,
 

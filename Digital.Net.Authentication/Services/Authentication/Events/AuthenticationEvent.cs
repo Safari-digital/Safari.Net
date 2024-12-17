@@ -5,21 +5,30 @@ using Digital.Net.Core.Extensions.EnumUtilities;
 
 namespace Digital.Net.Authentication.Services.Authentication.Events;
 
-public abstract class AuthenticationEvent(
-    AuthenticationEventType eventType,
-    string userAgent,
-    string ipAddress,
-    string? payload
-) : ApiEvent(userAgent, ipAddress)
+public abstract class AuthenticationEvent : ApiEvent
 {
+    public AuthenticationEvent()
+    {
+    }
+
+    public AuthenticationEvent(
+        AuthenticationEventType eventType,
+        string userAgent,
+        string ipAddress,
+        string? payload = null
+    )
+    {
+        Initialize(eventType, userAgent, ipAddress, payload);
+    }
+
     [Column("Action"), Required]
-    public AuthenticationEventType EventType { get; private set; } = eventType;
+    public AuthenticationEventType EventType { get; private set; } = AuthenticationEventType.Unknown;
 
     [Column("ActionName"), Required, MaxLength(128)]
-    public string ActionName { get; private set; } = eventType.GetDisplayName();
+    public string ActionName { get; private set; } = string.Empty;
 
     [Column("Payload")]
-    public string? Payload { get; private set; } = payload;
+    public string? Payload { get; private set; } = string.Empty;
 
     public static TEvent Create<TEvent>(
         AuthenticationEventType eventType,
@@ -33,10 +42,17 @@ public abstract class AuthenticationEvent(
         return eventInstance;
     }
 
-    protected abstract void Initialize(
+    protected void Initialize(
         AuthenticationEventType eventType,
         string userAgent,
         string ipAddress,
         string? payload
-    );
+    )
+    {
+        EventType = eventType;
+        ActionName = eventType.GetDisplayName();
+        UserAgent = userAgent;
+        IpAddress = ipAddress;
+        Payload = payload;
+    }
 }

@@ -11,4 +11,6 @@ public class TestContext(DbContextOptions<TestContext> options) : DbContext(opti
     public DbSet<TestIdEntity> IdUsers { get; set; }
     public DbSet<TestGuidEntity> GuidUsers { get; set; }
     public DbSet<ApiKey> ApiKeys { get; set; }
+    public DbSet<ApiToken> ApiTokens { get; set; }
+    public DbSet<AuthEvent> AuthEvents { get; set; }
 }

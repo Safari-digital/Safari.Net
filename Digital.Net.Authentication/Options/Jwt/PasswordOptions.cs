@@ -10,11 +10,11 @@ public class PasswordOptions
     ///     Which means: At least one lowercase, one uppercase, one digit, one special character and between 12 and 128
     ///     characters.
     /// </summary>
-    public Regex PasswordRegex { get; set; } = Defaults.PasswordRegex;
+    public Regex PasswordRegex { get; set; } = AuthenticationDefaults.PasswordRegex;
 
     /// <summary>
     ///     The size of the salt to be used in the password hashing.
     ///     Default to 10.
     /// </summary>
-    public int SaltSize { get; set; } = 10;
+    public int SaltSize { get; set; } = AuthenticationDefaults.SaltSize;
 }

@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Digital.Net.Authentication.Models;
 using Digital.Net.Authentication.Models.Authorizations;
+using Digital.Net.Authentication.Options;
 using Digital.Net.Authentication.Services.Options;
 
 namespace Digital.Net.Authentication.Services.Security;
@@ -19,8 +20,23 @@ public class HashService(IJwtOptionService options) : IHashService
     public static bool VerifyPassword(IApiUser user, string password) =>
         BCrypt.Net.BCrypt.Verify(password, user.Password);
 
-    public string HashPassword(string password) =>
-        BCrypt.Net.BCrypt.HashPassword(password, BCrypt.Net.BCrypt.GenerateSalt(options.SaltSize));
+    public string HashPassword(string password)
+    {
+        var salt = BCrypt.Net.BCrypt.GenerateSalt(options.SaltSize);
+        return BCrypt.Net.BCrypt.HashPassword(password, salt);
+    }
+
+    /// <summary>
+    ///     Hashes the password using BCrypt.
+    /// </summary>
+    /// <param name="password"> The password to hash.</param>
+    /// <param name="saltSize"> The size of the salt to generate.</param>
+    /// <returns></returns>
+    public static string HashPassword(string password, int? saltSize = null)
+    {
+        var salt = BCrypt.Net.BCrypt.GenerateSalt(saltSize ?? AuthenticationDefaults.SaltSize);
+        return BCrypt.Net.BCrypt.HashPassword(password, salt);
+    }
 
     public bool VerifyPasswordValidity(string password) => options.PasswordRegex.IsMatch(password);
 

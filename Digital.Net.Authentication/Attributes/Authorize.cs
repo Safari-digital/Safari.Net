@@ -41,7 +41,7 @@ public class AuthorizeAttribute<TApiUser>(AuthorizeType type) : Attribute, IAuth
         if (!result.HasError || result.IsAuthorized)
         {
             var contextService = context.HttpContext.RequestServices.GetRequiredService<IHttpContextService>();
-            contextService.AddItem(Defaults.ApiContextAuthorizationKey, result);
+            contextService.AddItem(AuthenticationDefaults.ApiContextAuthorizationKey, result);
             return;
         }
 
