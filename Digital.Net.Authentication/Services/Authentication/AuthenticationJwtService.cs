@@ -23,7 +23,7 @@ public class AuthenticationJwtService<TAuthorization>(
         if (record is null)
             return;
 
-        record.ExpiredAt = DateTime.UtcNow;
+        tokenRepository.Delete(record);
         await tokenRepository.SaveAsync();
     }
 
@@ -31,7 +31,19 @@ public class AuthenticationJwtService<TAuthorization>(
     {
         var records = tokenRepository.Get(t => t.ApiUserId == userId);
         foreach (var record in records)
-            record.ExpiredAt = DateTime.UtcNow;
+            tokenRepository.Delete(record);
+        await tokenRepository.SaveAsync();
+    }
+
+    public async Task RevokeAllTokensAsync(string token)
+    {
+        var record = tokenRepository.Get(t => t.Key == token).FirstOrDefault();
+        if (record is null)
+            return;
+
+        var records = tokenRepository.Get(t => t.ApiUserId == record.ApiUserId);
+        foreach (var rec in records)
+            tokenRepository.Delete(rec);
         await tokenRepository.SaveAsync();
     }
 

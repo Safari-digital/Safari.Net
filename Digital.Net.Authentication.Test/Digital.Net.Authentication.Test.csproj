@@ -13,6 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Digital.Net.Http\Digital.Net.Http.csproj" />
         <ProjectReference Include="..\Digital.Net.TestTools\Digital.Net.TestTools.csproj"/>
         <ProjectReference Include="..\InternalTestProgram\InternalTestProgram.csproj"/>
     </ItemGroup>

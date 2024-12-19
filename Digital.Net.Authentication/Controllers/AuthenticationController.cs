@@ -1,3 +1,4 @@
+using Digital.Net.Authentication.Attributes;
 using Digital.Net.Authentication.Controllers.Models;
 using Digital.Net.Authentication.Models;
 using Digital.Net.Authentication.Services.Authentication;

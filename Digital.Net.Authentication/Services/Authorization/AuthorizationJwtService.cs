@@ -54,7 +54,7 @@ public class AuthorizationJwtService<TApiUser, TAuthorization>(
     public AuthorizationResult AuthorizeApiUserRefresh(string? token)
     {
         var record = authorizationRepository
-            .Get(a => a.Key == (token ?? string.Empty) && a.UserAgent != httpContextService.UserAgent)
+            .Get(a => a.Key == (token ?? string.Empty))
             .FirstOrDefault();
         return record is null
             ? new AuthorizationResult().AddError(new AuthorizationInvalidTokenException())

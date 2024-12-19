@@ -10,6 +10,6 @@ public interface IAuthenticationService<TApiUser>
     public Result<string> RefreshTokens();
     public Task<Result<TApiUser>> ValidateCredentials(string login, string password);
     public Task<Result<string>> Login(string login, string password);
-    public Task Logout();
-    public Task LogoutAll();
+    public Task<Result> Logout();
+    public Task<Result> LogoutAll();
 }

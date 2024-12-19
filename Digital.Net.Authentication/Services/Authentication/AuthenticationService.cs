@@ -1,5 +1,7 @@
+using System.Security.Authentication;
 using Digital.Net.Authentication.Exceptions;
 using Digital.Net.Authentication.Models;
+using Digital.Net.Authentication.Models.Authorizations;
 using Digital.Net.Authentication.Services.Authentication.ApiUsers;
 using Digital.Net.Authentication.Services.Authentication.Events;
 using Digital.Net.Authentication.Services.Authorization;
@@ -13,17 +15,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Digital.Net.Authentication.Services.Authentication;
 
-public class AuthenticationService<TApiUser>(
+public class AuthenticationService<TApiUser, TAuthorization>(
     IHttpContextService httpContextService,
-    IHashService hashService,
     IJwtOptionService jwtOptions,
     IAuthenticationEventService<TApiUser> authenticationEventService,
     IAuthenticationJwtService authenticationJwtService,
     IAuthorizationJwtService<TApiUser> authorizationJwtService,
     IApiUserService<TApiUser> apiUserService,
-    IRepository<TApiUser> apiUserRepository
+    IRepository<TApiUser> apiUserRepository,
+    IRepository<TAuthorization> tokenRepository
 ) : IAuthenticationService<TApiUser>
     where TApiUser : EntityGuid, IApiUser
+    where TAuthorization : AuthorizationToken
 {
     public async Task<Result<TApiUser>> ValidateCredentials(string login, string password)
     {
@@ -79,8 +82,7 @@ public class AuthenticationService<TApiUser>(
 
     public Result<string> RefreshTokens()
     {
-        var cookieName = jwtOptions.CookieName;
-        var token = httpContextService.Request.Cookies[cookieName];
+        var token = httpContextService.Request.Cookies[jwtOptions.CookieName];
         var result = new Result<string>();
 
         var tokenResult = authorizationJwtService.AuthorizeApiUserRefresh(token);
@@ -90,37 +92,40 @@ public class AuthenticationService<TApiUser>(
 
         httpContextService.SetResponseCookie(
             authenticationJwtService.GenerateRefreshToken(tokenResult.ApiUserId),
-            cookieName,
+            jwtOptions.CookieName,
             jwtOptions.GetRefreshTokenExpirationDate()
         );
         result.Value = authenticationJwtService.GenerateBearerToken(tokenResult.ApiUserId);
         return result;
     }
 
-    public async Task Logout()
+    public async Task<Result> Logout()
     {
-        var cookieName = jwtOptions.CookieName;
+        var result = new Result();
         var refreshToken = httpContextService.Request.Cookies[jwtOptions.CookieName];
         if (refreshToken is null)
-            return;
+            return result.AddError(new AuthenticationException());
 
         await authenticationJwtService.RevokeTokenAsync(refreshToken);
-        httpContextService.Response.Cookies.Delete(cookieName);
+        httpContextService.Response.Cookies.Delete(jwtOptions.CookieName);
 
         await authenticationEventService.RegisterEventAsync(
             AuthenticationEventType.Logout,
             null,
             apiUserService.GetAuthenticatedUserId()
         );
+        return result;
     }
 
-    public async Task LogoutAll()
+    public async Task<Result> LogoutAll()
     {
-        var apiUserId = apiUserService.GetAuthenticatedUserId();
+        var result = new Result();
+        var refreshToken = httpContextService.Request.Cookies[jwtOptions.CookieName];
+        var apiUserId = tokenRepository.Get(u => u.Key == refreshToken).FirstOrDefault()?.ApiUserId;
         if (apiUserId is null)
-            return;
+            return result.AddError(new AuthenticationException());
 
-        await authenticationJwtService.RevokeAllTokensAsync((Guid)apiUserId);
+        await authenticationJwtService.RevokeAllTokensAsync(apiUserId.Value);
         httpContextService.Response.Cookies.Delete(jwtOptions.CookieName);
 
         await authenticationEventService.RegisterEventAsync(
@@ -128,5 +133,6 @@ public class AuthenticationService<TApiUser>(
             null,
             apiUserId
         );
+        return result;
     }
 }

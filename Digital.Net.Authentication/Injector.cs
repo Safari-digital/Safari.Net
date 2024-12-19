@@ -67,7 +67,7 @@ public static class Injector
         services.AddScoped<IApiUserService<TApiUser>, ApiUserService<TApiUser>>();
         services.AddScoped<IAuthenticationEventService<TApiUser>, AuthenticationEventService<TApiUser, TAuthEvent>>();
         services.AddScoped<IAuthorizationJwtService<TApiUser>, AuthorizationJwtService<TApiUser, TApiToken>>();
-        services.AddScoped<IAuthenticationService<TApiUser>, AuthenticationService<TApiUser>>();
+        services.AddScoped<IAuthenticationService<TApiUser>, AuthenticationService<TApiUser, TApiToken>>();
         return services;
     }
 
